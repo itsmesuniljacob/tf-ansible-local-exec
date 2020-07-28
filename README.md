@@ -12,3 +12,7 @@ As a workaround, we force the Terraform to wait until connection to instance is 
 
 
 Note: Please set `export ANSIBLE_HOST_KEY_CHECKING=False`
+
+## Use `remote-exec`
+
+In the above method we first copy the Ansible playbook to remote host, install Ansible and run as local host.
