@@ -6,7 +6,7 @@
 
   vars:
     helloworld: Hummming Bird!
-    test-list: ['Template iterate','Template loop','Template item']
+    # test-list: ['Template iterate','Template loop','Template item']
 
   tasks:
     - name: Install firewalld
@@ -34,5 +34,5 @@
 
     - name: Loop example
       template:
-        src: templates_example.j2
+        src: ../files/example.j2
         dest: /var/www/html/loop.html
