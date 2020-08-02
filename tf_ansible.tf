@@ -125,7 +125,11 @@ resource "null_resource" "ansible_trigger" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 60; ansible-playbook -u '${var.ssh_user}' -i '${google_compute_instance.tfansible.network_interface.0.access_config.0.nat_ip},' --private-key ${var.private_key_path} ./ansible/httpd.yml"
+    command = <<-EOT
+      sleep 60;
+      export ANSIBLE_HOST_KEY_CHECKING=False;
+        ansible-playbook -u ${var.ssh_user} -i ${google_compute_instance.tfansible.network_interface.0.access_config.0.nat_ip}, --private-key ${var.private_key_path} ./ansible/httpd.yml
+    EOT
   }
 
   depends_on = [google_compute_instance.tfansible]
